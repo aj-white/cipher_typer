@@ -1,7 +1,8 @@
 """
 This contains 2 classes which implement encryption slightly differently.
 Both classes allow the base cipher to be selected from one or all of:
-    lowercase, uppercase letters, numbers, punctutation (minus \ and ") and whitesapce
+    lowercase, uppercase letters, numbers, punctutation (minus \ and ") and whitespace
+By default the most secure of 'all' is selected
 
 CaeserCipher is a classic caeser cipher which shifts characters according to a given key
 CaeserSeedCipher is a modified cipher that is more a substitution cipher than a caeser cipher.
@@ -38,7 +39,7 @@ class CaeserCipher:
         " ",
     )
 
-    def __init__(self, selector):
+    def __init__(self, selector="all"):
         """Setup class instance by choosing which characters to include in cipher"""
 
         self.characters = self._get_characters(selector)
@@ -116,7 +117,7 @@ class CaeserSeedCipher:
         " ",
     )
 
-    def __init__(self, selector):
+    def __init__(self, selector="all"):
         """Setup class instance by choosing which characters to include in cipher"""
 
         self.characters = self._get_characters(selector)
@@ -166,14 +167,14 @@ class CaeserSeedCipher:
 
 if __name__ == "__main__":
     print("Using CaeserCipher:")
-    cipher = CaeserCipher("all")
+    cipher = CaeserCipher()
     print(cipher.encrypt("Secret message.", 13))
     print(cipher.decrypt("'rpErGmzrFFntr`", 13))
     print(cipher.encrypt("John Doe will be on the [08:00] train @King's Cross", 56))
     print(cipher.decrypt("9>-=%3>*%{.;;%'*%>=%^-*%KT#DTTL%^[&.=%J .=,u]%2[>]]", 56))
 
     print("\nUsing CaeserSeedCipher:")
-    c = CaeserSeedCipher("all")
+    c = CaeserSeedCipher()
     print(c.encrypt("Secret message.", 13))
     print(c.decrypt("hx5dx}fqx%%HDx-", 13))
     print(c.encrypt("John Doe will be on the [08:00] train @King's Cross", 56))
