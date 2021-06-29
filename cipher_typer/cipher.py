@@ -153,12 +153,16 @@ class CaeserSeedCipher:
         return self.translated
 
     def encrypt(self, message: str, key: int = 0) -> str:
+        if key > self.max_key_length:
+            raise IndexError(f"key must be less than {self.max_key_length}")
         self.translated = ""
         self.key = key
         self.message = message
         return self._crypto("encrypt")
 
     def decrypt(self, message: str, key: int = 0) -> str:
+        if key > self.max_key_length:
+            raise IndexError(f"key must be less than {self.max_key_length}")
         self.translated = ""
         self.key = key
         self.message = message
