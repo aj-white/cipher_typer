@@ -163,12 +163,3 @@ class CaeserSeedCipher:
         self.key = key
         self.message = message
         return self._crypto("decrypt")
-
-
-if __name__ == "__main__":
-    print("\nUsing CaeserSeedCipher:")
-    c = CaeserSeedCipher()
-    print(c.encrypt("Secret message.", 13))
-    print(c.decrypt("hx5dx}fqx%%HDx-", 13))
-    # print(c.encrypt("John Doe will be on the [08:00] train @King's Cross", 56))
-    # print(c.decrypt("lG#R27G:2rD||2b:2GR2_#:29uEzuu%2_c?DR2BTDR=,`2xcG``", 56))
