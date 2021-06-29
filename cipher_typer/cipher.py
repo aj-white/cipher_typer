@@ -166,16 +166,9 @@ class CaeserSeedCipher:
 
 
 if __name__ == "__main__":
-    print("Using CaeserCipher:")
-    cipher = CaeserCipher()
-    print(cipher.encrypt("Secret message.", 13))
-    print(cipher.decrypt("'rpErGmzrFFntr`", 13))
-    print(cipher.encrypt("John Doe will be on the [08:00] train @King's Cross", 56))
-    print(cipher.decrypt("9>-=%3>*%{.;;%'*%>=%^-*%KT#DTTL%^[&.=%J .=,u]%2[>]]", 56))
-
     print("\nUsing CaeserSeedCipher:")
     c = CaeserSeedCipher()
     print(c.encrypt("Secret message.", 13))
     print(c.decrypt("hx5dx}fqx%%HDx-", 13))
-    print(c.encrypt("John Doe will be on the [08:00] train @King's Cross", 56))
-    print(c.decrypt("lG#R27G:2rD||2b:2GR2_#:29uEzuu%2_c?DR2BTDR=,`2xcG``", 56))
+    # print(c.encrypt("John Doe will be on the [08:00] train @King's Cross", 56))
+    # print(c.decrypt("lG#R27G:2rD||2b:2GR2_#:29uEzuu%2_c?DR2BTDR=,`2xcG``", 56))
