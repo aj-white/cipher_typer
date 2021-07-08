@@ -2,7 +2,7 @@ from enum import Enum
 
 import typer
 
-from cipher import CaeserCipher, CaeserSeedCipher
+from cipher_typer.cipher import CaeserCipher, CaeserSeedCipher
 
 
 class EncryptionMethod(str, Enum):
@@ -18,7 +18,7 @@ class Mode(str, Enum):
 class Level(str, Enum):
     lower = "lower"
     upper = "upper"
-    both = "bith"
+    both = "both"
     _all = "all"
 
 
