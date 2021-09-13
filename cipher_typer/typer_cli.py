@@ -4,15 +4,12 @@ import typer
 
 from cipher_typer.cipher import CaeserCipher, CaeserSeedCipher
 
+app = typer.Typer()
+
 
 class EncryptionMethod(str, Enum):
     caeser = "caeser"
     seed = "seed"
-
-
-class Mode(str, Enum):
-    encrypt = "encrypt"
-    decrypt = "decrypt"
 
 
 class Level(str, Enum):
@@ -22,8 +19,28 @@ class Level(str, Enum):
     _all = "all"
 
 
-def main(
-    mode: Mode,
+@app.command()
+def encrypt(
+    message: str,
+    key: int = typer.Argument(
+        0, help="This is the encryption key, to decrypt message key must be identical"
+    ),
+    method: EncryptionMethod = typer.Option(EncryptionMethod.caeser),
+    level: Level = typer.Option(Level._all),
+):
+    """
+    Encrypt message with user defined key
+    """
+    if method == "caeser":
+        c = CaeserCipher(level)
+    if method == "seed":
+        c = CaeserSeedCipher(level)
+
+    typer.echo(c.encrypt(message, key))
+
+
+@app.command()
+def decrypt(
     message: str,
     key: int = typer.Argument(0),
     method: EncryptionMethod = typer.Option(EncryptionMethod.caeser),
@@ -34,11 +51,8 @@ def main(
     if method == "seed":
         c = CaeserSeedCipher(level)
 
-    if mode == "encrypt":
-        typer.echo(c.encrypt(message, key))
-    if mode == "decrypt":
-        typer.echo(c.decrypt(message, key))
+    typer.echo(c.decrypt(message, key))
 
 
 if __name__ == "__main__":
-    typer.run(main)
+    app()
