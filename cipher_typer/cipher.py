@@ -14,49 +14,23 @@ import random
 import string
 
 
-class InvalidSelector(Exception):
-    pass
-
-
 class CaeserCipher:
-    """Class to represent caeser cipher that allows use of numbers, punctuation and spaces
-
-    Args:
-        selector: selects which set of characters to include in cipher
-                  Examples:
-                      "lower": include only lower case characters
-                      "upper": include only upper case characters
-                      "both": includes lower and upper case characters
-                      "all": includes lower case, upper case, punctuation, numbers and whitespace characters
-    """
+    """Class to represent caeser cipher that allows use of numbers, punctuation and spaces"""
 
     CHARACTERS = (
-        string.ascii_lowercase,
-        string.ascii_uppercase,
+        string.ascii_letters
         # Remove backslash to avoid escape character issues and quote mark to avoid string interpretation issues
-        "".join(i for i in string.punctuation if i not in ["\\", '"']),
-        string.digits,
-        " ",
+        + "".join(i for i in string.punctuation if i not in ["\\", '"'])
+        + string.digits
+        + " "
     )
 
-    def __init__(self, selector="all"):
-        """Setup class instance by choosing which characters to include in cipher"""
+    def __init__(self):
+        """Setup class instance characters for cipher"""
 
-        self.characters = self._get_characters(selector)
+        self.characters = CaeserCipher.CHARACTERS
         self.max_key_length = len(self.characters)
         self.translated = ""
-
-    def _get_characters(self, selector: str):
-        if selector == "lower":
-            return CaeserCipher.CHARACTERS[0]
-        elif selector == "upper":
-            return CaeserCipher.CHARACTERS[1]
-        elif selector == "both":
-            return "".join(CaeserCipher.CHARACTERS[i] for i in [0, 1])
-        elif selector == "all":
-            return "".join(CaeserCipher.CHARACTERS[i] for i in [0, 1, 2, 3, 4])
-        else:
-            raise InvalidSelector("Selector options: lower, upper, both, all")
 
     def _crypto(self, mode: str) -> str:
         for char in self.message:
@@ -167,3 +141,9 @@ class CaeserSeedCipher:
         self.key = key
         self.message = message
         return self._crypto("decrypt")
+
+
+if __name__ == "__main__":
+    c = CaeserCipher()
+    print(c.characters)
+    print(c.max_key_length)
