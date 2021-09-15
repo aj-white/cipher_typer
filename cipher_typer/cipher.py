@@ -1,7 +1,7 @@
 """
 This contains 2 classes which implement encryption slightly differently.
 Both classes allow the base cipher to be selected from one or all of:
-    lowercase, uppercase letters, numbers, punctutation (minus \ and ") and whitespace
+    lowercase, uppercase letters, numbers, punctutation (minus backslash and double quotes) and whitespace
 By default the most secure of 'all' is selected
 
 CaeserCipher is a classic caeser cipher which shifts characters according to a given key
