@@ -15,9 +15,7 @@ class EncryptionMethod(str, Enum):
 @app.command()
 def encrypt(
     message: str,
-    key: int = typer.Argument(
-        0, help="This is the encryption key, to decrypt message key must be identical"
-    ),
+    key: int = typer.Argument(0, help="This is the encryption key, to decrypt message key must be identical"),
     method: EncryptionMethod = typer.Option(EncryptionMethod.caeser),
 ):
     """

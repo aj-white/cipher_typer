@@ -1,6 +1,7 @@
 """
 This contains 2 classes which implement encryption slightly differently.
-Both classes allow the base cipher to be lowercase, uppercase letters, numbers, punctutation (minus backslash and double quotes) and whitespace
+Both classes allow the base cipher to be lowercase, uppercase letters, numbers,
+punctutation (minus backslash and double quotes) and whitespace
 
 CaeserCipher is a classic caeser cipher which shifts characters according to a given key
 CaeserSeedCipher is a modified cipher that is more a substitution cipher than a caeser cipher.
